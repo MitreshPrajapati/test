@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="form">
+      <input type="text" id="email" placeholder="xyz@superman.com" />
+      <input type="password" id="password" placeholder="*******" />
+      <input type="submit" value="Log In" />
+    </form>
+  </body>
+</html>
+
+<script>
+  var form = document.querySelector("form");
+  form.addEventListener("submit", loginfunc);
+
+  var userdata = JSON.parse(localStorage.getItem("userData"));
+  console.log(userdata);
+
+  function loginfunc() {
+    event.preventDefault();
+
+    var data = {
+      email: form.email.value,
+      password: form.password.value,
+    };
+
+    if (userdata.email == data.email || userdata.password != data.password) {
+      alert("Incorrect Password");
+    } else if (
+      userdata.email == data.email &&
+      userdata.password == data.password
+    ) {
+      alert("LogIn Successfull");
+    }
+    else if (
+      userdata.email !== data.email
+    ) {
+      alert("User doesn't exist");
+    } else if (userdata == null) {
+      alert("Please create an account");
+    }
+  }
+</script>

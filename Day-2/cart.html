@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="common.css">
+</head>
+<body>
+    <nav id="nav">
+        <div> <a href="">Home</a> </div>
+        <div> <a href="mens.html">Mens</a> </div>
+        <div> <a href="womens.html">Womens</a> </div>
+        <div> <a href="cart.html">Cart </a></div>
+    </nav>
+    <div id="layout">
+
+    </div>
+</body>
+</html>
+
+<script>
+    Arrlocal=JSON.parse(localStorage.getItem("addcart")) 
+    console.log(Arrlocal);
+
+    displaycard(Arrlocal)
+
+    function displaycard(local){
+         local.forEach(function(elem){
+        
+        var card= document.createElement("div")
+            card.setAttribute("class","cards")
+
+        var img=document.createElement("img")
+        img.setAttribute("src",elem.image_url)
+            
+        var name=document.createElement("h4")
+            name.innerText=elem.name
+
+        var price=document.createElement("p")
+            price.innerText=elem.price
+
+        var strike=document.createElement("p")
+            strike.innerText=elem.strikedoffprice
+
+        var addCart=document.createElement("button")
+        addCart.innerText="REMOVE CART"
+            addCart.addEventListener("click",function(){
+            myfun(elem)
+
+            });
+
+        card.append(img,name,price,strike,addCart)
+        console.log(card)
+        layout.append(card)
+        })
+    }
+    function myfun(card){
+        event.target.parentNode.remove()
+    }
+
+</script>
